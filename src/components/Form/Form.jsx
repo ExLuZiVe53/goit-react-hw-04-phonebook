@@ -20,12 +20,6 @@ const Form = () => {
     event.preventDefault();
     props.onAddContact({ ...name, ...number });
     resetForm();
-
-    // const newContact = { name: this.state.name, number: this.state.number };
-    // this.props.onAddContact = {
-    //   name: this.state.name,
-    //   number: this.state.number,
-    // };
   };
 
   const resetForm = () => {
@@ -40,7 +34,6 @@ const Form = () => {
         <input
           type="text"
           name="name"
-          // id={this.nameInputId}
           value={name}
           onChange={handleChange()}
           pattern="^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -55,7 +48,6 @@ const Form = () => {
         <input
           type="tel"
           name="number"
-          // id={this.nameInputId}
           value={number}
           onChange={handleChange()}
           pattern="\\+?\\d{1,4}?[ .\\-\\s]?\\(?\\d{1,3}?\\)?[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,9}"

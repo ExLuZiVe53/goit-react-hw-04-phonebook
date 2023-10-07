@@ -13,7 +13,7 @@ export const App = () => {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ]);
   const [filter, setFilter] = useState('');
-
+  console.log([contacts.name]);
   // add new contact in to state
   const addContactForm = data => {
     const searchName = contacts.map(cont => cont.name).includes(data.name);
@@ -57,20 +57,20 @@ export const App = () => {
     });
   };
 
-  // componentDidMount() {
-  //   const stringifiledContacts = localStorage.getItem('contacts');
-  //   const parsedContacts = JSON.parse(stringifiledContacts) ?? [];
-  //   this.setState({
-  //     contacts: parsedContacts,
-  //   });
-  // }
+  useEffect(() => {
+    const stringifiledContacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(stringifiledContacts) ?? [];
+    setContacts({
+      contacts: parsedContacts,
+    });
+  });
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.contacts.length !== prevState.contacts.length) {
-  //     const stringifiledContacts = JSON.stringify(this.state.contacts);
-  //     localStorage.setItem('contacts', stringifiledContacts);
-  //   }
-  // }
+  useEffect(() => {
+    if (contacts.length !== prevState.contacts.length) {
+      const stringifiledContacts = JSON.stringify(contacts);
+      localStorage.setItem('contacts', stringifiledContacts);
+    }
+  });
 
   // const visibleContacts = this.getVisibleContacts();
   return (
