@@ -40,6 +40,7 @@ export const App = () => {
   };
 
   // filter includes toLowerCase()
+
   const getVisibleContacts = () => {
     // const { contacts, filter } = this.state;
 
@@ -76,14 +77,14 @@ export const App = () => {
   return (
     <div className={styles.Wrapper}>
       <h1 className="title">Phonebook</h1>
-      <Form onAddContact={addContactForm()} />
+      <Form onAddContact={addContactForm} />
       <h2>Contacts</h2>
 
       <Filter value={filter} onChangeFilter={changeFilter()} />
 
       <ContactList
         contacts={getVisibleContacts()}
-        onRemoveContact={removeContact()}
+        onRemoveContact={removeContact}
       />
     </div>
   );
