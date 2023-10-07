@@ -29,19 +29,20 @@ const Form = () => {
   };
 
   const resetForm = () => {
-    this.setState({ name: '', number: '' });
+    setName({ name: '' });
+    setNumber({ number: '' });
   };
 
   return (
-    <form onSubmit={this.handleSubmit} className={styles.FormWrapper}>
+    <form onSubmit={handleSubmit()} className={styles.FormWrapper}>
       <label className={styles.FormLabel}>
         Name
         <input
           type="text"
           name="name"
           // id={this.nameInputId}
-          value={this.state.name}
-          onChange={this.handleChange}
+          value={name}
+          onChange={handleChange()}
           pattern="^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           required
           className={styles.FormInput}
@@ -55,8 +56,8 @@ const Form = () => {
           type="tel"
           name="number"
           // id={this.nameInputId}
-          value={this.state.number}
-          onChange={this.handleChange}
+          value={number}
+          onChange={handleChange()}
           pattern="\\+?\\d{1,4}?[ .\\-\\s]?\\(?\\d{1,3}?\\)?[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,9}"
           required
           className={styles.FormInput}
