@@ -67,13 +67,16 @@ export const App = () => {
     setContacts(parsedContacts);
   }, []);
 
-  useEffect(prevState => {
-    if (contacts.length !== prevState.contacts.length) {
-      const stringifiledContacts = JSON.stringify(contacts);
-      localStorage.setItem('user-contacts', stringifiledContacts);
-      // window.localStorage.clear();
-    }
-  }, []);
+  useEffect(
+    prevState => {
+      if (contacts.length !== prevState.contacts.length) {
+        const stringifiledContacts = JSON.stringify(contacts);
+        localStorage.setItem('user-contacts', stringifiledContacts);
+        // window.localStorage.clear();
+      }
+    },
+    [contacts]
+  );
 
   // const visibleContacts = getVisibleContacts();
   return (
