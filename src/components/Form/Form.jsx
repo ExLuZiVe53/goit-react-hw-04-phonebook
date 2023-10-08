@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import styles from './Form.module.css';
 
-const Form = () => {
-  nameInputId = nanoid();
-
+const Form = props => {
   // state
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -28,14 +26,14 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit()} className={styles.FormWrapper}>
+    <form onSubmit={handleSubmit} className={styles.FormWrapper}>
       <label className={styles.FormLabel}>
         Name
         <input
           type="text"
           name="name"
           value={name}
-          onChange={handleChange()}
+          onChange={handleChange}
           pattern="^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           required
           className={styles.FormInput}
@@ -49,7 +47,7 @@ const Form = () => {
           type="tel"
           name="number"
           value={number}
-          onChange={handleChange()}
+          onChange={handleChange}
           pattern="\\+?\\d{1,4}?[ .\\-\\s]?\\(?\\d{1,3}?\\)?[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,9}"
           required
           className={styles.FormInput}

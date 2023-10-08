@@ -13,7 +13,7 @@ export const App = () => {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ]);
   const [filter, setFilter] = useState('');
-  console.log([contacts.name]);
+  // console.log([contacts.name]);
   // add new contact in to state
   const addContactForm = data => {
     const searchName = contacts.map(cont => cont.name).includes(data.name);
@@ -36,12 +36,12 @@ export const App = () => {
 
   // add filter by contact
   const changeFilter = filter => {
-    setFilter({ filter });
+    setFilter(filter);
   };
 
   // filter includes toLowerCase()
 
-  const getVisibleContacts = () => {
+  const getVisibleContacts = (contacts, filter) => {
     // const { contacts, filter } = this.state;
     // this.state.contacts;
     // this.state.filter;
@@ -66,14 +66,14 @@ export const App = () => {
     setContacts({
       contacts: parsedContacts,
     });
-  });
+  }, []);
 
   useEffect(() => {
     if (contacts.length !== prevState.contacts.length) {
       const stringifiledContacts = JSON.stringify(contacts);
       localStorage.setItem('contacts', stringifiledContacts);
     }
-  });
+  }, []);
 
   // const visibleContacts = this.getVisibleContacts();
   return (
@@ -82,10 +82,10 @@ export const App = () => {
       <Form onAddContact={addContactForm} />
       <h2>Contacts</h2>
 
-      <Filter value={filter} onChangeFilter={changeFilter()} />
+      <Filter value={filter} onChangeFilter={changeFilter} />
 
       <ContactList
-        contacts={getVisibleContacts()}
+        contacts={getVisibleContacts}
         onRemoveContact={removeContact}
       />
     </div>
