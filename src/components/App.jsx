@@ -64,15 +64,14 @@ export const App = () => {
   useEffect(() => {
     const stringifiledContacts = localStorage.getItem('user-contacts');
     const parsedContacts = JSON.parse(stringifiledContacts) ?? [];
-    setContacts({
-      contacts: parsedContacts,
-    });
+    setContacts(parsedContacts);
   }, []);
 
   useEffect(prevState => {
     if (contacts.length !== prevState.contacts.length) {
       const stringifiledContacts = JSON.stringify(contacts);
       localStorage.setItem('user-contacts', stringifiledContacts);
+      // window.localStorage.clear();
     }
   }, []);
 
