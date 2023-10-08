@@ -9,20 +9,22 @@ const Form = props => {
 
   const handleChange = event => {
     const { name, value } = event.currentTarget;
-    setName({
-      [name]: value,
-    });
+    if (name === 'name') {
+      setName(value);
+    } else {
+      setNumber(value);
+    }
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    props.onAddContact({ ...name, ...number });
+    props.onAddContact({ name, number });
     resetForm();
   };
 
   const resetForm = () => {
-    setName({ name: '' });
-    setNumber({ number: '' });
+    setName('');
+    setNumber('');
   };
 
   return (

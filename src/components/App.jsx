@@ -6,15 +6,10 @@ import { ContactList } from './ContactList/ContactList';
 import styles from './App.module.css';
 
 export const App = () => {
-  const [contacts, setContacts] = useState([
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ]);
+  const [contacts, setContacts] = useState([]);
 
   const [filter, setFilter] = useState('');
-  // console.log([contacts.name]);
+
   // add new contact in to state
   const addContactForm = data => {
     const searchName = contacts.map(cont => cont.name).includes(data.name);
@@ -29,9 +24,7 @@ export const App = () => {
         id: nanoid(),
       };
 
-      setContacts(prevState => ({
-        contacts: [...prevState.contacts, addContact],
-      }));
+      setContacts([...contacts, addContact]);
     }
   };
 
@@ -43,10 +36,6 @@ export const App = () => {
   // filter includes toLowerCase()
 
   const getVisibleContacts = () => {
-    // const { contacts, filter } = this.state;
-    // this.state.contacts;
-    // this.state.filter;
-
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase().trim())
     );
@@ -54,31 +43,23 @@ export const App = () => {
 
   // delete contact in this.state
   const removeContact = contactId => {
-    setFilter(prevState => {
-      return {
-        contacts: prevState.contacts.filter(({ id }) => id !== contactId),
-      };
-    });
+    setContacts(contacts.filter(({ id }) => id !== contactId));
   };
 
   useEffect(() => {
     const stringifiledContacts = localStorage.getItem('user-contacts');
-    const parsedContacts = JSON.parse(stringifiledContacts) ?? [];
+    const parsedContacts = stringifiledContacts
+      ? JSON.parse(stringifiledContacts)
+      : [];
     setContacts(parsedContacts);
   }, []);
 
-  useEffect(
-    prevState => {
-      if (contacts.length !== prevState.contacts.length) {
-        const stringifiledContacts = JSON.stringify(contacts);
-        localStorage.setItem('user-contacts', stringifiledContacts);
-        // window.localStorage.clear();
-      }
-    },
-    [contacts]
-  );
+  useEffect(() => {
+    // window.localStorage.clear();
+    const stringifiledContacts = JSON.stringify(contacts);
+    localStorage.setItem('user-contacts', stringifiledContacts);
+  }, [contacts]);
 
-  // const visibleContacts = getVisibleContacts();
   return (
     <div className={styles.Wrapper}>
       <h1 className="title">Phonebook</h1>
