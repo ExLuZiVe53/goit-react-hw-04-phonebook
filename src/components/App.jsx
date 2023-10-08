@@ -43,6 +43,8 @@ export const App = () => {
 
   const getVisibleContacts = () => {
     // const { contacts, filter } = this.state;
+    // this.state.contacts;
+    // this.state.filter;
 
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase().trim())
