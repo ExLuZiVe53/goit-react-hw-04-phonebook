@@ -4,7 +4,7 @@ import styles from './ContactList.module.css';
 export const ContactList = ({ contacts, onRemoveContact }) => (
   <ul className={styles.ListStyle}>
     {contacts.map(oneContact => (
-      <li className="li" key={id}>
+      <li className="li" key={oneContact.id}>
         <span className={styles.NameSpan}>{oneContact.name}</span>
         <span className={styles.TelSpan}>{oneContact.number}</span>
 
